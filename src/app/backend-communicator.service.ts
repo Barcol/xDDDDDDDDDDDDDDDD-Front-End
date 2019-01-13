@@ -14,10 +14,10 @@ export class BackendCommunicatorService {
   constructor(private httpClient: HttpClient) {
   }
 
-  getPlants(): Observable<Plant[]> {
+  getPlants(positionX: number, positionY: number): Observable<Plant[]> {
     const params = new HttpParams()
-      .set('userPositionX', '15')
-      .set('userPositionY', '15')
+      .set('userPositionX', String(positionX))
+      .set('userPositionY', String(positionY))
       .set('distance', '0');
     const endpointAddress = `${this.backendURL}${this.getPlantsListURLPart}`;
     return this.httpClient.get<Plant[]>(endpointAddress, {params: params});
