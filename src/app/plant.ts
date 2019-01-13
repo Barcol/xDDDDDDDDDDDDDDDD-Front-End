@@ -1,5 +1,5 @@
 export class Plant {
-  public name: number;
+  public name: string;
   public positionX: number;
   public positionY: number;
 }

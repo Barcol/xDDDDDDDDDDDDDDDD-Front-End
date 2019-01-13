@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Plant} from './plant';
 
@@ -16,16 +16,19 @@ export class BackendCommunicatorService {
 
   getPlants(): Observable<Plant[]> {
     const params = new HttpParams()
-      .set('userPositionX', '1')
-      .set('userPositionY', '1')
-      .set('distance', '1');
+      .set('userPositionX', '15')
+      .set('userPositionY', '15')
+      .set('distance', '4');
     const endpointAddress = `${this.backendURL}${this.getPlantsListURLPart}`;
     return this.httpClient.get<Plant[]>(endpointAddress, {params: params});
   }
 
-  // startCycle(scenarioName: string): Observable<Blob> {
-  // const params = new HttpParams().set('scenarioName', scenarioName);
-  // const endpointAddress = `${this.backendURL}${this.startScenarioURLPart}`;
-  // return this.httpClient.get(endpointAddress, {responseType: 'blob', params: params});
-  // }
+  addPlant(name: string, positionX: number, positionY: number): Observable<null> {
+    const params = new HttpParams()
+      .set('name', name)
+      .set('positionX', String(positionX))
+      .set('positionY', String(positionY));
+    const endpointAddress = `${this.backendURL}${this.addPlantURLPart}`;
+    return this.httpClient.get<null>(endpointAddress, {params: params});
+  }
 }
