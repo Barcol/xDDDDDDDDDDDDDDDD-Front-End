@@ -2,7 +2,7 @@
 @import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
 
 .card {
-  width: 400px;
+  width: 600px;
   text-align: center;
   margin: 20px auto auto auto;
   padding: 10px;
